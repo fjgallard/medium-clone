@@ -1,0 +1,30 @@
+{
+  "name": "momer-apps-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/momer-apps-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/momer-apps-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "momer-apps:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "momer-apps:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "momer-apps:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["momer-apps"]
+}
